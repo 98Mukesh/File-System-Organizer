@@ -1,0 +1,78 @@
+/* default styling */
+html{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* descendant Selectors(also known as Combinators) */
+header h1{
+    font-weight: 400;
+}
+
+header{
+    display : flex;                                  /* flex : arrange elements side by side */
+    justify-content: space-between;                  /* justify-content : aligns the elements horizontally */
+    margin : 0 3rem;   
+    /* 1rem = font size of the root element or default font size of webpage, say font-size = 10px then 1rem = 10px*/                      
+}
+
+nav{
+    width: 20rem;
+    position : relative;        /* Allows Element to move relative to its original position, This Line Necessary to move element*/
+    top : 1rem;                 /* Move from top */         
+    right: 3rem;                /* Move from right */
+}
+
+ul{
+    display: flex;
+    justify-content: space-between;
+}
+
+li{
+    list-style: none;                                 /* remove bullets from list */
+    font-size: 1.5rem;
+}
+
+.showcase_img{
+    width : 95vw;             /* Viewport -> visible portion, Viewport Width(vw) -> percentage width of total viewport(browser screen)->  */
+    margin : 1rem;
+}
+
+article{
+    display: flex;
+    margin: 1.5rem;
+}
+
+.content{
+    text-align: center;                 /* Align all content; Not Arrange Vertically */
+    margin-right: 2rem;
+    font-size: 1.5rem;
+    padding: 1rem;
+}
+
+h2{
+    font-weight: 500;
+}
+
+footer {
+    background-color: black;
+    color:white;
+    height: 4rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;           /* align-items : aligns the elements vertically , It is a flex property */
+    font-size: 1.5rem;
+}
+
+a{
+    text-decoration: none;         /* Removes Underline */
+    color: black;
+    border: 1px solid blue;
+    border-radius: 10px;
+    padding: 2px;
+}
+
+/* Psuedo Classes : In-Built CSS classes */
+/* hover -> change property when we hover on an element */
+a:hover{
+    color: red;            
+}
