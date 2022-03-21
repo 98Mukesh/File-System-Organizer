@@ -1,10 +1,9 @@
-const url = 'https://store.epicgames.com/en-US/browse?q=tomb%20raider&sortBy=relevancy&sortDir=DESC&count=40'
 const request = require('request')
 const cheerio = require('cheerio')
 
-// const webObj = require('./web3')
+const webObj = require('./web3')
 
-// function getFinalUrl(url) {
+function getFinalUrl(url) {
 request(url, function (err, response, html) {
     if (err) {
         console.log(err)
@@ -13,13 +12,14 @@ request(url, function (err, response, html) {
         extractData(html)
     }
 })
-// }
+}
 
 function extractData(html) {
     let $ = cheerio.load(html)
 
     let gameName = $('.css-spkfbn[data-component="PDPTitleHeader"]').text()
 
+    console.log(gameName)
     if (gameName.length > 32) {
         let gameArr = gameName.split(':')
         gameName = gameArr[0]
@@ -55,30 +55,30 @@ function extractData(html) {
     }
     console.log(dvlCom)
 
-//      let specs = 'Specifications :'
-//     let minSpecs = 'Minimum Requirements :\n\n'
-//     let recommendedSpecs = 'Recommended Requirements :\n\n'
+    let specs = 'Specifications :'
+    let minSpecs = 'Minimum Requirements :\n\n'
+    let recommendedSpecs = 'Recommended Requirements :\n\n'
 
-//    let spec = $('.css-3rds8q .css-2sc5lq')
-//     for (let i = 0; i < spec.length; i++) {
-//         if (i % 2 == 0) {
-//             minSpecs += $(spec[i]).text() + '\n'
-//         }
-//         else {
-//             recommendedSpecs += $(spec[i]).text() + '\n'
-//         }
-//     }
+   let spec = $('.css-3rds8q .css-2sc5lq')
+    for (let i = 0; i < spec.length; i++) {
+        if (i % 2 == 0) {
+            minSpecs += $(spec[i]).text() + '\n'
+        }
+        else {
+            recommendedSpecs += $(spec[i]).text() + '\n'
+        }
+    }
 
-    // console.log(minSpecs)
-    // console.log(recommendedSpecs)
+    console.log(minSpecs)
+    console.log(recommendedSpecs)
 
-    // let language = $('.css-k204li span')
-    // let supportedLang = 'Supported Languages : \r\r' + $(language[0]).text() + '\r\r' + $(language[1]).text()
+    let language = $('.css-k204li span')
+    let supportedLang = 'Supported Languages : \r\r' + $(language[0]).text() + '\r\r' + $(language[1]).text()
 
 
-    // webObj.ps(gameName, gameInfo, genre, features, dvlCom, specs, minSpecs, recommendedSpecs, supportedLang)
+    webObj.ps(gameName, gameInfo, genre, features, dvlCom, specs, minSpecs, recommendedSpecs, supportedLang)
 }
 
-// module.exports = {
-//     getFinal: getFinalUrl
-// }
+module.exports = {
+    getFinal: getFinalUrl
+}
