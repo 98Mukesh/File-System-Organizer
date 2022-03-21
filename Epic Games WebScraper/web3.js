@@ -27,7 +27,7 @@ function processData(gameName, gameInfo, genre, features, dvlCom, specs, minSpec
         content += gameArr[i] + '\n\n'
     }
 
-    fs.appendFileSync(gameFilePath, content)
+    fs.writeFileSync(gameFilePath, content)
 
 }
 

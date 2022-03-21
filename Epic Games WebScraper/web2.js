@@ -19,14 +19,13 @@ function extractData(html) {
 
     let gameName = $('.css-spkfbn[data-component="PDPTitleHeader"]').text()
 
-    console.log(gameName)
     if (gameName.length > 32) {
         let gameArr = gameName.split(':')
         gameName = gameArr[0]
     }
 
     let info = $('.css-1g0mw3g[data-component="MarkdownParagraph"]')
-    let gameInfo = ""
+    let gameInfo = '-> Info :\n\n'
     for (let i = 0 ; i < info.length ; i++){
         gameInfo += `• ${$(info[i]).text()} \n\n`
     }
@@ -34,8 +33,8 @@ function extractData(html) {
 
     let genreFeatureHeading = $('.css-encdnt .css-i96ixb')
     let genreFeatureData = $('.css-encdnt .css-7agjck')
-    let genre = $(genreFeatureHeading[0]).text() + ' : \n'
-    let features = $(genreFeatureHeading[1]).text() + ' : \n'
+    let genre = `-> ${$(genreFeatureHeading[0]).text()} : \n\n`
+    let features = `-> ${$(genreFeatureHeading[1]).text()} : \n\n`
 
     for (let i = 0; i < genreFeatureData.length; i++) {
         if (i < genreFeatureData.length / 2) {
@@ -49,31 +48,30 @@ function extractData(html) {
 
     let developerCompany1 = $('.css-b6wrti .css-i96ixb')
     let developerCompany2 = $('.css-b6wrti .css-btns76')
-    let dvlCom = ""
+    let dvlCom = '-> Development And Release Date :\n\n'
     for (let i = 0; i < developerCompany1.length; i++) {
-        dvlCom += `${$(developerCompany1[i]).text()}  :  ${$(developerCompany2[i]).text()} \n` 
+        dvlCom += `• ${$(developerCompany1[i]).text()}  :  ${$(developerCompany2[i]).text()} \n` 
     }
-    console.log(dvlCom)
 
-    let specs = 'Specifications :'
-    let minSpecs = 'Minimum Requirements :\n\n'
-    let recommendedSpecs = 'Recommended Requirements :\n\n'
 
-   let spec = $('.css-3rds8q .css-2sc5lq')
-    for (let i = 0; i < spec.length; i++) {
+    let specs = '-> Specifications :'
+    let minSpecs = '• Minimum Requirements :\n\n'
+    let recommendedSpecs = '• Recommended Requirements :\n\n'
+
+    let spec1 = $('.css-3rds8q .css-i96ixb[data-component]')
+    let spec2 = $('.css-3rds8q .css-1yqcr93[data-component]')
+    for (let i = 0; i < spec1.length; i++) {
         if (i % 2 == 0) {
-            minSpecs += $(spec[i]).text() + '\n'
+            minSpecs += `□ ${$(spec1[i]).text()} : ${$(spec2[i]).text()} \n`
         }
         else {
-            recommendedSpecs += $(spec[i]).text() + '\n'
+            recommendedSpecs += `□ ${$(spec1[i]).text()} : ${$(spec2[i]).text()} \n`
         }
     }
 
-    console.log(minSpecs)
-    console.log(recommendedSpecs)
 
     let language = $('.css-k204li span')
-    let supportedLang = 'Supported Languages : \r\r' + $(language[0]).text() + '\r\r' + $(language[1]).text()
+    let supportedLang = `-> Supported Languages :\n\n • ${$(language[0]).text()}\n\n • ${$(language[1]).text()}`
 
 
     webObj.ps(gameName, gameInfo, genre, features, dvlCom, specs, minSpecs, recommendedSpecs, supportedLang)
