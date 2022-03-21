@@ -1,4 +1,7 @@
-const game = "Tomb Raider"
+const input = process.argv.slice(2)
+
+game = input[0]
+
 const url = "https://store.epicgames.com"
 let puppeteer = require('puppeteer');
 
