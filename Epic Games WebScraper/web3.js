@@ -2,7 +2,7 @@ const fs = require('fs')
 const path = require('path')
 
 function processData(gameName, gameInfo, genre, features, dvlCom, specs, minSpecs, recommendedSpecs, supportedLang) {
-
+    
     let gameDirPath = path.join(__dirname, 'games')
 
     dirCreator(gameDirPath)

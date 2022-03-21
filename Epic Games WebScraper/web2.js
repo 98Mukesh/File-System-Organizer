@@ -4,15 +4,16 @@ const cheerio = require('cheerio')
 const webObj = require('./web3')
 
 function getFinalUrl(url) {
-request(url, function (err, response, html) {
-    if (err) {
-        console.log(err)
-    }
-    else {
-        extractData(html)
-    }
-})
+    request(url, function (err, response, html) {
+        if (err) {
+            console.log(err)
+        }
+        else {
+            extractData(html)
+        }
+    })
 }
+
 
 function extractData(html) {
     let $ = cheerio.load(html)
@@ -26,15 +27,15 @@ function extractData(html) {
 
     let info = $('.css-1g0mw3g[data-component="MarkdownParagraph"]')
     let gameInfo = '-> Info :\n\n'
-    for (let i = 0 ; i < info.length ; i++){
+    for (let i = 0; i < info.length; i++) {
         gameInfo += `• ${$(info[i]).text()} \n\n`
     }
 
 
     let genreFeatureHeading = $('.css-encdnt .css-i96ixb')
     let genreFeatureData = $('.css-encdnt .css-7agjck')
-    let genre = `-> ${$(genreFeatureHeading[0]).text()} : \n\n`
-    let features = `-> ${$(genreFeatureHeading[1]).text()} : \n\n`
+    let genre = `-> ${$(genreFeatureHeading[0]).text()} : \n`
+    let features = `-> ${$(genreFeatureHeading[1]).text()} : \n`
 
     for (let i = 0; i < genreFeatureData.length; i++) {
         if (i < genreFeatureData.length / 2) {
@@ -50,7 +51,11 @@ function extractData(html) {
     let developerCompany2 = $('.css-b6wrti .css-btns76')
     let dvlCom = '-> Development And Release Date :\n\n'
     for (let i = 0; i < developerCompany1.length; i++) {
-        dvlCom += `• ${$(developerCompany1[i]).text()}  :  ${$(developerCompany2[i]).text()} \n` 
+        if (i == developerCompany1.length) {
+            let window = $(developerCompany1[i]).text().split(/(?=[A-Z])/)
+            dvlCom += `• ${$(developerCompany1[i]).text()}  : ${window} } \n`
+        }
+        dvlCom += `• ${$(developerCompany1[i]).text()}  :  ${$(developerCompany2[i]).text()} \n`
     }
 
 
