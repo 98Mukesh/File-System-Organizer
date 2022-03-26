@@ -1,6 +1,6 @@
 We will be Creating an Epic Games WebScraper :
 
--> Project is based on Automation and Webscraping implemented using NodeJS
+-> Project is based on Automation and Webscraping implemented
 
 
 -> Features of the Project:
@@ -8,17 +8,16 @@ We will be Creating an Epic Games WebScraper :
 • Input : From Command Line
 
 1. Automation Part : 
-• Input name of a game in command line and it will redirect to epic games store and search the game and 
-  redirect to the page containing all games and filter out all games that matches the input we have given 
+• Input name of a game in command line and it will redirect to epic games store, search the game and 
+  redirect to the page containing all game matching with the input we have given 
   and fetch us the url of the current page.
 
 2. WebScraping : 
 • Once we got the url of required page , it fetches the required game 
-  data (i.e, game name , game info , System Requirements to check 
-  whether he game is compatible on our system or not, etc.) 
+  data (i.e, game name , game info , System Requirements , etc.) 
 
-• Then we create a folder and inside that we create text file with 
-  the respective game name and store all the data of the game in the text file
+• Then we create a folder and inside that we store all the fetched data in a text file created with 
+  the respective game name 
 
 
 
