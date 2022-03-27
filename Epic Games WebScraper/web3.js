@@ -5,12 +5,15 @@ const path = require('path')
 function processData(gameName, gameInfo, genF, dvlCom, specs, minSpecs, recommendedSpecs, supportedLang) {
 
     let gameDirPath = path.join(__dirname, 'games')
-
     dirCreator(gameDirPath)
 
-    let gameFilePath = path.join(gameDirPath, gameName + '.txt')
+    
+    let finalGameDirPath = path.join(gameDirPath , gameName)
+    dirCreator(finalGameDirPath)
 
-    let gameArr = [
+    let gameFilePath = path.join(finalGameDirPath, gameName + '.txt')
+
+    let gameObj = {
         gameName,
         gameInfo,
         genF,
@@ -19,12 +22,12 @@ function processData(gameName, gameInfo, genF, dvlCom, specs, minSpecs, recommen
         minSpecs,
         recommendedSpecs,
         supportedLang
-    ]
+    }
 
     let content = ""
 
-    for (let i = 0; i < gameArr.length; i++) {
-        content += gameArr[i] + '\n\n'
+    for (let i in gameObj) {
+        content += gameObj[i] + '\n\n'
     }
 
     fs.writeFileSync(gameFilePath, content)

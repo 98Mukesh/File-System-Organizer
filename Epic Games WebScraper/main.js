@@ -4,7 +4,7 @@ let game = input[0]
 
 const url = "https://store.epicgames.com"
 
-const puppeteer = require('puppeteer');
+const puppeteer = require('puppeteer')
 
 const webObj = require('./web1');
 
