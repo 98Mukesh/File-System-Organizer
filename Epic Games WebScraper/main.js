@@ -1,10 +1,10 @@
 const input = process.argv.slice(2)
 
-game = input[0]
+let game = input[0]
 
 const url = "https://store.epicgames.com"
 
-let puppeteer = require('puppeteer');
+const puppeteer = require('puppeteer');
 
 const webObj = require('./web1');
 
@@ -33,5 +33,3 @@ const webObj = require('./web1');
         console.log(error)
     }
 })()
-
-

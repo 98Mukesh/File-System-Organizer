@@ -17,7 +17,8 @@ function getUrl(url) {
 
 function getLink(html) {
     let $ = cheerio.load(html)
-    let gameElement = $('li.css-lrwy1y .css-1jx3eyg')
+
+    let gameElement = $('.css-lrwy1y .css-1jx3eyg')
 
     for (let i = 0; i < gameElement.length / 3; i++) {
         let link = $(gameElement[i]).attr('href')

@@ -1,8 +1,9 @@
 const fs = require('fs')
 const path = require('path')
 
-function processData(gameName, gameInfo, genre, features, dvlCom, specs, minSpecs, recommendedSpecs, supportedLang) {
-    
+
+function processData(gameName, gameInfo, genF, dvlCom, specs, minSpecs, recommendedSpecs, supportedLang) {
+
     let gameDirPath = path.join(__dirname, 'games')
 
     dirCreator(gameDirPath)
@@ -12,8 +13,7 @@ function processData(gameName, gameInfo, genre, features, dvlCom, specs, minSpec
     let gameArr = [
         gameName,
         gameInfo,
-        genre,
-        features,
+        genF,
         dvlCom,
         specs,
         minSpecs,
@@ -37,6 +37,7 @@ function dirCreator(dirPath) {
         fs.mkdirSync(dirPath)
     }
 }
+
 
 
 module.exports = {
