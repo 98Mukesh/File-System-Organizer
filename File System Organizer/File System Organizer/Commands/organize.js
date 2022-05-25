@@ -24,12 +24,10 @@ let types = {
   };
 
 function organizeFn(dirPath){
-        // input of directory Path
     let destPath;
     
     if(dirPath == undefined){
         console.log('Please Enter a Valid Directory Path')
-        // Check whether dirPath is passed or not 
         return;
     }
     else{
@@ -39,10 +37,8 @@ function organizeFn(dirPath){
         if (doesExist == true){
             destPath = path.join(dirPath , 'Organized_Files')
             
-            // C:\Users\Mukesh\Desktop\Dev\Websites\test Folder\Organized_Files -> We Want to create a Folder in this path
-
             if(fs.existsSync(destPath) == false){
-                fs.mkdirSync(destPath)          // We will only create a folder if it does not exists
+                fs.mkdirSync(destPath)          
             }else{
                 console.log('This Folder Already Exists')
             }
@@ -55,15 +51,12 @@ function organizeFn(dirPath){
     organizeHelper(dirPath , destPath)
 }
 
-// Writing this function to categorize our files
 function organizeHelper(src , dest){
-    let childNames = fs.readdirSync(src)        // get all files and folders inside your src
-    // console.log(childNames)                  // output in the form of Array
+    let childNames = fs.readdirSync(src)       
 
     for (let i = 0 ; i < childNames.length ; i++){
-        let childAddress = path.join(src , childNames[i])       // Identify path for the files
-        let isFile = fs.lstatSync(childAddress).isFile()        // Check and Identify only files
-        // console.log(childAddress + "  " + isFile)
+        let childAddress = path.join(src , childNames[i])       
+        let isFile = fs.lstatSync(childAddress).isFile()        
 
         if (isFile == true){
             let fileCategory = getCategory(childNames[i])
@@ -75,18 +68,14 @@ function organizeHelper(src , dest){
 }
 
 function getCategory(name){
-    let ext = path.extname(name)        // Gives the extension names of the files , say .txt
-    ext = ext.slice(1)                  // Give extension name without dot (.) -> txt
-    // console.log(ext)
-
+    let ext = path.extname(name)        
+    ext = ext.slice(1)                  
 
     for (let type in types){
         let cTypeArr = types[type]
-        // console.log(cTypeArr)
 
         for (let i = 0; i < cTypeArr.length; i++){
             if (ext == cTypeArr[i])
-                                // We Compare the extensions with the values present in cTypeArr
             return type
         }
     }
@@ -95,17 +84,17 @@ function getCategory(name){
 
 
 function sendFiles(srcFilePath , dest , fileCategory){
-    let catPath = path.join(dest , fileCategory)        // creating file category path
+    let catPath = path.join(dest , fileCategory)      
 
-    if(fs.existsSync(catPath) == false){            // checking for folder path category
+    if(fs.existsSync(catPath) == false){            
         fs.mkdirSync(catPath)
     }
 
-    let fileName = path.basename(srcFilePath)       // Extract the name of the files
-    let destFilePath = path.join(catPath , fileName)   // Created a path for the files in category folders
+    let fileName = path.basename(srcFilePath)       
+    let destFilePath = path.join(catPath , fileName)   
 
-    fs.copyFileSync(srcFilePath , destFilePath)     // Copied file from src to dest
-    fs.unlinkSync(srcFilePath)              // Delete file after copying
+    fs.copyFileSync(srcFilePath , destFilePath)     
+    fs.unlinkSync(srcFilePath)              
 
     console.log(fileName + "  is copied to  " + fileCategory)
 

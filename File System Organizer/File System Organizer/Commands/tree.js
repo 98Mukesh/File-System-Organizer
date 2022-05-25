@@ -23,10 +23,10 @@ function treeHelper(targetPath , indent){
     }
     else{
         let dirName = path.basename(targetPath)  
-        console.log(indent + '└──' + dirName)       // display the folders
+        console.log(indent + '└──' + dirName)       
 
 
-        let children = fs.readdirSync(targetPath)       // Extracting all the children of the test Folder
+        let children = fs.readdirSync(targetPath)      
         // console.log(children)
 
 
@@ -34,7 +34,7 @@ function treeHelper(targetPath , indent){
             let childPath = path.join(targetPath , children[i])
             // console.log(childPath)
 
-            treeHelper(childPath , indent +'\t')        // Using Recursion to repeat the process for all files and folders
+            treeHelper(childPath , indent +'\t')       
         }
     }
 }
