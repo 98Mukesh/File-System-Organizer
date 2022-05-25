@@ -5,7 +5,7 @@ We will be Creating an Epic Games WebScraper :
 
 -> Features of the Project:
 
-• Input : From Command Line
+• User Input
 
 1. Automation Part : 
 • Input name of a game in command line and it will redirect to epic games store, search the game and 
